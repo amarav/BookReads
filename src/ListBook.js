@@ -8,7 +8,6 @@ class ListBook extends Component {
    };
   constructor(props) {
     super(props);
-
     this.handleChange = this.handleChange.bind(this);  
   }  
     
@@ -35,7 +34,7 @@ class ListBook extends Component {
                               }}
                             ></div>
                             <div className="book-shelf-changer">
-                              <select value={this.state.value} onChange={this.handleChange}>>
+                              <select value={book.shelf} onChange={this.handleChange}>>
                                 <option value="move" disabled>
                                   Move to...
                                 </option>

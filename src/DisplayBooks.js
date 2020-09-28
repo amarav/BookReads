@@ -9,17 +9,6 @@ class DisplayBooks extends Component {
     super(props);
     this.state = {shelf: ''}; 
   }  
-      
-  updateBookshelf(updatedbook,shelf) {  
-    BooksAPI.update(updatedbook,shelf).then(
-         this.setState((currentState) => ({
-              books: currentState.books.filter((book) => {
-              return book.id !== updatedbook.id;
-            })
-            .concat({ ...updatedbook, shelf }),
-       }))
-    );  
-  }
   
   render() {
     const { books, title, shelf } = this.props;
@@ -34,7 +23,7 @@ class DisplayBooks extends Component {
                   {books
                     .filter((book) => book.shelf === shelf)
                     .map((book) => (
-                      <ListBook key={book.id} book={book} updateBookshelf={this.updateBookshelf} />
+                      <ListBook key={book.id} book={book} updateBookshelf={this.props.updateBookshelf} />
                      ))}
                 </ol>
               </div>

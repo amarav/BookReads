@@ -26,7 +26,7 @@ class Bookshelf  extends Component{
     return(
     <div>      
       {SHELVES.map(shelf => (
-          <DisplayBooks key={shelf.id} books={books} shelf={shelf.id} title={shelf.title} />
+          <DisplayBooks key={shelf.id} books={books} shelf={shelf.id} title={shelf.title} updateBookshelf={this.props.updateBookshelf}/>
         )
        )}
     </div>
