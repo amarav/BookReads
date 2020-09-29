@@ -1,35 +1,10 @@
 import React from "react";
-import * as BooksAPI from "./BooksAPI";
 import "./App.css";
 import Bookshelf from "./Bookshelf";
 import { Link } from "react-router-dom";
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.updateBookshelf = this.updateBookshelf.bind(this);
-  }
-  state = {
-    books: [],
-  };
 
-  componentDidMount = () => {
-    BooksAPI.getAll().then((books) => {
-      console.log(books);
-      this.setState({ books: books });
-    });
-  };
-
-  updateBookshelf(updatedbook,shelf) {  
-    BooksAPI.update(updatedbook,shelf).then(
-         this.setState((currentState) => ({
-              books: currentState.books.filter((book) => {
-              return book.id !== updatedbook.id;
-            })
-            .concat({ ...updatedbook, shelf }),
-       }))
-    );  
-  }
 
   render() {
     return (
@@ -39,7 +14,7 @@ class Home extends React.Component {
             <h1>MyReads</h1>
           </div>
         </div>
-        <Bookshelf books={this.state.books} updateBookshelf={this.updateBookshelf} />
+        <Bookshelf books={this.props.books} updateBookshelf={this.props.updateBookshelf} />
         <div className="open-search">
           <Link to="/Search">Add a book</Link>
         </div>
