@@ -17,6 +17,7 @@ class ListBook extends Component {
     }
   
   
+  
   render() {
     const { book } = this.props;
     return (
@@ -34,6 +35,7 @@ class ListBook extends Component {
                               }}
                             ></div>
                             <div className="book-shelf-changer">
+
                               <select value={book.shelf} onChange={this.handleChange}>>
                                 <option value="move" disabled>
                                   Move to...

@@ -4,10 +4,6 @@ import ListBook from './ListBook'
 
 class DisplayBooks extends Component {
   
-  constructor(props) {
-    super(props);
-    this.state = {shelf: ''}; 
-  }  
   
   render() {
     const { books, title, shelf } = this.props;

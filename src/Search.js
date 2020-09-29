@@ -9,6 +9,15 @@ class Search extends Component{
     query: '',
     searchBooks: [],
   }
+
+   updateShelf(book) {      
+        this.props.books.find( (shelfbook) => {
+        return ( 
+          this.setState((oldState) => ({ searchBooks: {...oldState.searchBooks,shelfbook} 
+            })));                           
+        })     
+    }; 
+
   updateQuery = (query) => {
     this.setState(() => ({
       query: query.trim()
@@ -20,11 +29,12 @@ class Search extends Component{
     BooksAPI.search(query.trim()).then( response => {
       if(response.error !== 'empty query'){
       this.setState(()=>({
-        searchedBooks:[...response]
+        searchBooks:[...response]
       }))
+        this.updateShelf(response);
     }else{
       this.setState(()=>({
-        searchedBooks:[] 
+        searchBooks:[] 
       }))
     }
     });
@@ -33,6 +43,8 @@ class Search extends Component{
   render()
   {    
     const { query } = this.state
+    
+
     return(
       <div>
        
@@ -54,7 +66,11 @@ class Search extends Component{
 
               </div>
             </div>
-            <div className="search-books-results">
+            <div>
+            </div>
+
+            <div className="search-books-results">      
+
               <ol className="books-grid">
                     {this.state.searchBooks
                     .map((book) => (
