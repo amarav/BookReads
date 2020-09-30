@@ -9,14 +9,13 @@ class Search extends Component {
     searchBooks: [],
   };
 
- updateShelf = (mybook, shelf) => {
-   
+ updateShelf = (mybook, myshelf) => {   
   this.setState(({ searchBooks }) => ({
     searchBooks: searchBooks.map((book) =>
-      book.id === mybook.id ? { ...book, shelf } : book
+      book.id === mybook.id ? { ...book, shelf : myshelf } : book
     ),
   }));
-  this.props.updateBookshelf(mybook, shelf);
+  this.props.updateBookshelf(mybook, myshelf);
 };
 
   updateQuery = (query) => {
@@ -28,17 +27,12 @@ class Search extends Component {
       BooksAPI.search(query.trim()).then((response) => {
         if (response.error !== "empty query") {
           const searchedBooks = response.map((book) => {
-            this.props.books.filter((shelfbook) => {
-              if (shelfbook.id === book.id) {
-                book.shelf = shelfbook.shelf;
-              } else {
-                book.shelf = "none";
-              }                          
-              return book.shelf;
-            });
-            this.updateShelf(book,book.shelf)
+          const mybook =  this.props.books.find( shelfbook => {        
+                                                     (shelfbook.id === book.id) ?  shelfbook :  book})
+                         
+            //this.updateShelf(book,shelf)
             return book;
-          });            
+          });           
           
           
           this.setState(() => ({
