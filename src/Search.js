@@ -9,10 +9,16 @@ class Search extends Component {
     searchBooks: [],
   };
 
+  updateShelf = (mybook,myshelf) => {
+    this.setState( (oldState) => ({        
+          ...oldState.searchBooks,
+          [oldState.searchBooks.shelf] :  { myshelf },        
+    }));      
+    this.props.updateBookshelf(mybook,myshelf)
+  };
+
   updateQuery = (query) => {
-    this.setState(() => ({
-      query: query.trim(),
-    }));
+    this.setState({query});
     
     if (query.length === 0) {
       this.setState({ searchBooks: [] });
@@ -26,11 +32,13 @@ class Search extends Component {
                 book.shelf = shelfbook.shelf;
               } else {
                 book.shelf = "none";
-              }
+              }                          
               return book.shelf;
             });
             return book;
-          });
+          });         
+          
+          
           this.setState(() => ({
             searchBooks: [...searchedBooks],
           }));
@@ -78,7 +86,7 @@ class Search extends Component {
                 <ListBook
                   key={book.id}
                   book={book}
-                  updateBookshelf={this.props.updateBookshelf}
+                  updateBookshelf={this.updateShelf}
                 />
               ))}
             </ol>
