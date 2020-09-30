@@ -33,5 +33,8 @@ class DisplayBooks extends Component {
 export default DisplayBooks;
 
 DisplayBooks.propTypes = {
-  books: PropTypes.array.isRequired,
+  books: PropTypes.array.isRequired, 
+  updateBookshelf : PropTypes.func.isRequired,
+  shelf : PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };

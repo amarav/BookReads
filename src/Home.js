@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Bookshelf from "./Bookshelf";
+import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 
 class Home extends React.Component {
@@ -24,3 +25,8 @@ class Home extends React.Component {
 }
 
 export default Home;
+
+Home.propTypes = {
+   books: PropTypes.array.isRequired,
+   updateBookshelf : PropTypes.func.isRequired,
+};

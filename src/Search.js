@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as BooksAPI from "./BooksAPI";
 import ListBook from "./ListBook";
+import PropTypes from "prop-types";
 
 class Search extends Component {
   state = {
@@ -9,37 +10,33 @@ class Search extends Component {
     searchBooks: [],
   };
 
- updateShelf = (mybook, myshelf) => {   
-  this.setState(({ searchBooks }) => ({
-    searchBooks: searchBooks.map((book) =>
-      book.id === mybook.id ? { ...book, shelf : myshelf } : book
-    ),
-  }));
-  this.props.updateBookshelf(mybook, myshelf);
-};
+  updateShelf = (mybook, myshelf) => {
+    this.setState(({ searchBooks }) => ({
+      searchBooks: searchBooks.map((book) =>
+        book.id === mybook.id ? { ...book, shelf: myshelf } : book
+      ),
+    }));
+    this.props.updateBookshelf(mybook, myshelf);
+  };
 
   updateQuery = (query) => {
-    this.setState({query});    
+    this.setState({ query });
     if (query.length === 0) {
       this.setState({ searchBooks: [] });
-    } 
-    else if (query.trim()) {
+    } else if (query.trim()) {
       BooksAPI.search(query.trim()).then((response) => {
         if (response.error !== "empty query") {
           const searchedBooks = response.map((book) => {
-          const mybook =  this.props.books.find( shelfbook => {        
-                                                     (shelfbook.id === book.id) ?  shelfbook :  book})
-                         
-            //this.updateShelf(book,shelf)
+            const mybook = this.props.books.find(
+              (shelfbook) => shelfbook.id === book.id
+            );
+            const shelf = mybook ? mybook.shelf : "None";
+            this.updateShelf(book, shelf);
             return book;
-          });           
-          
-          
-          this.setState(() => ({
-            searchBooks: [...searchedBooks],
-          }));
-        } 
-        else {
+          });
+
+          this.setState(() => ({ searchBooks: [...searchedBooks] }));
+        } else {
           this.setState(() => ({
             searchBooks: [],
           }));
@@ -58,14 +55,6 @@ class Search extends Component {
               Close
             </Link>
             <div className="search-books-input-wrapper">
-              {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
               <input
                 type="text"
                 placeholder="Search by title or author"
@@ -93,3 +82,8 @@ class Search extends Component {
   }
 }
 export default Search;
+
+Search.propTypes = {
+  books: PropTypes.array.isRequired,
+  updateBookshelf: PropTypes.func.isRequired,
+};
