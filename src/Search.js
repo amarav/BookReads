@@ -9,17 +9,18 @@ class Search extends Component {
     searchBooks: [],
   };
 
-  updateShelf = (mybook,myshelf) => {
-    this.setState( (oldState) => ({        
-          ...oldState.searchBooks,
-          [oldState.searchBooks.shelf] :  { myshelf },        
-    }));      
-    this.props.updateBookshelf(mybook,myshelf)
-  };
+ updateShelf = (mybook, shelf) => {
+   
+  this.setState(({ searchBooks }) => ({
+    searchBooks: searchBooks.map((book) =>
+      book.id === mybook.id ? { ...book, shelf } : book
+    ),
+  }));
+  this.props.updateBookshelf(mybook, shelf);
+};
 
   updateQuery = (query) => {
-    this.setState({query});
-    
+    this.setState({query});    
     if (query.length === 0) {
       this.setState({ searchBooks: [] });
     } 
@@ -35,8 +36,9 @@ class Search extends Component {
               }                          
               return book.shelf;
             });
+            this.updateShelf(book,book.shelf)
             return book;
-          });         
+          });            
           
           
           this.setState(() => ({
