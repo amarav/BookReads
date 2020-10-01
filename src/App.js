@@ -3,7 +3,7 @@ import './App.css'
 import Home from './Home'
 import Search from './Search'
 import * as BooksAPI from "./BooksAPI";
-import { BrowserRouter,Switch, Route,  } from "react-router-dom";
+import { BrowserRouter,Switch, Route, Redirect } from "react-router-dom";
 
 class BooksApp extends React.Component {  
   
@@ -52,7 +52,8 @@ class BooksApp extends React.Component {
      <BrowserRouter>
       <Switch>
        <Route exact path='/' render={this.MainPage}  />     
-       <Route exact path='/Search' render={this.SearchPage} />           
+       <Route exact path='/Search' render={this.SearchPage} />   
+       <Redirect to="/" />
       </Switch>       
      </BrowserRouter>
     )

@@ -30,7 +30,7 @@ class Search extends Component {
             const mybook = this.props.books.find(
               (shelfbook) => shelfbook.id === book.id
             );
-            const shelf = mybook ? mybook.shelf : "None";
+            const shelf = mybook ? mybook.shelf : "none";
             this.updateShelf(book, shelf);
             return book;
           });
