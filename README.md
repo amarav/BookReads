@@ -14,7 +14,7 @@ If the user does not want it to be in any of the shelves , it will set to none. 
 # Installation and Deployment
 
 * Begin by grabbing the code repo
-git clone https://github.com/Arjith-Natarajan/myreads.git
+git clone https://github.com/amarav/udacityBookReads.git
 
 or just Download as a zip file ⬇️ and extract it
 
