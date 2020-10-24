@@ -1,16 +1,38 @@
-# MyReads Project
+# My Reads Project
 
-MyReads project is a project that lets you to solidify your knowledge on react fundamentals.
+MyReads project is a project challenge by Udacity that lets you to solidify your knowledge on react fundamentals.
 In this project, user lands on a main page with bookshelves with books that are assigned to currently reading, want to read or read. We have the option to switch shelves or search a book and assign it to different shelves.
 
 If the user does not want it to be in any of the shelves , it will set to none. To bring it back to the shelves, user has to navigate to the search page and add it to the shelf or change the shelf
 
-## TL;DR
+# Pre requisites
 
-To get started developing right away:
+* Node.js & NPM installed on your environment
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+* Any modern web-browser with debugging tools like Chrome, FireFox
+
+# Installation and Deployment
+
+* Begin by grabbing the code repo
+git clone https://github.com/Arjith-Natarajan/myreads.git
+
+or just Download as a zip file ⬇️ and extract it
+
+* Navigate to root directory by cd myreads or equivalent method
+
+## Installing necessary packages and dependencies
+
+* npm install
+
+Stretch a little while packages are downloaded
+
+## Deploy the app on local test server
+
+npm start
+
+* Fires up the application server at port 3000
+
+* Visit http://localhost:3000 in your favourite browser to play around with the application 🎊T
 
 ## What You're Getting
 ```bash
@@ -37,7 +59,14 @@ To get started developing right away:
     |__ ListBook.js  #List the books with their info and options to switch shelves
     |__ Search.js #Search a book and update in bookshelf
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
+# APPLICATION FUNCTIONALITY
+
+* List Books under 3 diff shelves : Currently Reading, Want to Read and Read
+* Ability to change the shelf of the books by clicking on them and selecting
+* Search for different books and list search results
+* Ability to add new books from search results to one of 3 shelves
+* Maintain and display same shelf for a book in shelf as well as search results
+
 
 ## Backend Server
 
