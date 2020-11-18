@@ -5,6 +5,8 @@ In this project, user lands on a main page with bookshelves with books that are 
 
 If the user does not want it to be in any of the shelves , it will set to none. To bring it back to the shelves, user has to navigate to the search page and add it to the shelf or change the shelf
 
+Watch the live demo [here](https://5fb534e24e805b0ba67415d3--bookreads-amarav.netlify.app/)
+
 # Pre requisites
 
 * Node.js & NPM installed on your environment
